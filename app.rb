@@ -11,7 +11,7 @@ class App
     if @path != '/time'
       #если бы ниже этого if-а была логика, то надо было бы писать
       # return make_response('', 404)  тут и ниже
-      make_response('', 404)
+      make_response('Not Found', 404)
     elsif @query.nil?
       make_response("Unknown time format parameter", 400)
     else
@@ -32,11 +32,7 @@ class App
   end
 
   def make_response(body, status)
-    if status == 404
-      Rack::Response.new('', 404, {})
-    else
-      Rack::Response.new(body, status, headers)
-    end
+    Rack::Response.new(body, status, headers)
   end
 
   def headers
