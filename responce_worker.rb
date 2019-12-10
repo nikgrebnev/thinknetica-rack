@@ -1,18 +1,22 @@
 class ResponceWorker
 
+  attr_reader :body
+
   def initialize(str)
     @query = str
     @unknown_attributes = []
     @formatter = TimeFormatter.new
   end
 
-  def worker
+  def response_valid?
 #    возвращаем 2 параметра - false если неудачно и строку с неудачными параметрами
 #    или true + строку времени.
     if query_valid?
-      return true, body_valid
+      @body = body_valid
+      return true
     else
-      return false, body_error
+      @body = body_error
+      return false
     end
   end
 
