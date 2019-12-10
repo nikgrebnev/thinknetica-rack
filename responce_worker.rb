@@ -9,8 +9,6 @@ class ResponceWorker
   end
 
   def response_valid?
-#    возвращаем 2 параметра - false если неудачно и строку с неудачными параметрами
-#    или true + строку времени.
     if query_valid?
       @body = body_valid
       return true
