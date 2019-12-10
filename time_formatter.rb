@@ -10,8 +10,8 @@ class TimeFormatter
   }
 
   def parse_query(str)
-    REPLACE_DATA.each do |key,val|
-      str.gsub!(key,val)
+    REPLACE_DATA.each do |key, val|
+      str.gsub!(key, val)
     end
     str.gsub!(',','-')
     str
