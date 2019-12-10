@@ -8,6 +8,7 @@ class App
   end
 
   def call(env)
+    puts Rack::Request.new(env)
     @body = []
     @path = env["REQUEST_PATH"]
     @query = env["QUERY_STRING"]
