@@ -7,7 +7,6 @@ class App
     @path = env["REQUEST_PATH"]
     @query = env["QUERY_STRING"]
 
-    puts "@path = #{@path}"
     if @path != '/time'
       return Rack::Response.new('', 404, {})
     end
