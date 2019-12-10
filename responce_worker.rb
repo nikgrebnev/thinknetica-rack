@@ -1,30 +1,27 @@
 class ResponceWorker
 
-  attr_reader :body
+  attr_reader :valid
 
   def initialize(str)
     @query = str
     @unknown_attributes = []
     @formatter = TimeFormatter.new
+
+    @valid = check_query
   end
 
-  def response_valid?
-    if query_valid?
-      @body = body_valid
-      return true
-    else
-      @body = body_error
-      return false
-    end
+  def body
+    @valid ? body_valid : body_error
   end
 
-  def query_valid?
-    return false if @query[0..6] != "format="
-    @query = @query[7..-1]
+  private
+
+  def check_query
     @query.split(',').each do |key|
       @unknown_attributes << key if !@formatter.include?(key.strip)
     end
     return false unless @unknown_attributes.empty?
+
     true
   end
 
